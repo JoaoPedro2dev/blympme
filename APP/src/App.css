@@ -11,6 +11,21 @@ section {
   height: 60px;
   border-radius: 50%;
   position: absolute;
-  bottom: 20px;
-  right: 20px;
+  bottom: 40px;
+  right: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  border: none;
+
+  background-color: #006ed6;
+  color: #fff;
+
+  transition: 0.2s;
+}
+
+.addBtn:hover {
+  background-color: #80b7eb;
 }

@@ -1,14 +1,19 @@
 import "./App.css";
+import Card from "./Componentes/Card/Card";
 import Header from "./Componentes/Header/Header";
+import { Plus } from "lucide-react";
 
 function App() {
   return (
     <div>
       <Header />
       <section>
-        <h1>Olá mundo</h1>
+        <Card />
+        <Card />
       </section>
-      <button className="addBtn">+</button>
+      <button className="addBtn">
+        <Plus />
+      </button>
     </div>
   );
 }
