@@ -3,6 +3,8 @@ import Card from "./Componentes/Card/Card";
 import Header from "./Componentes/Header/Header";
 import { Plus } from "lucide-react";
 
+import { useNavigate } from "react-router-dom";
+
 const array = [
   {
     id: 3,
@@ -67,6 +69,8 @@ const array = [
 ];
 
 function App() {
+  const navigate = useNavigate();
+
   return (
     <div>
       <Header />
@@ -83,7 +87,12 @@ function App() {
           ))
         )}
       </section>
-      <button className="addBtn">
+      <button
+        className="addBtn"
+        onClick={() => {
+          navigate("/adicionar");
+        }}
+      >
         <Plus />
       </button>
     </div>
