@@ -1,0 +1,40 @@
+.cardBody {
+  border-radius: 15px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.cardTop {
+  background-color: #006ed6;
+  color: #fff;
+
+  padding: 15px 20px;
+}
+
+.cardBottom {
+  padding: 20px;
+  background-color: #4092e0;
+  color: #fff;
+}
+
+.cardBody > nav {
+  padding: 15px 20px;
+  background-color: #80b7eb;
+  display: flex;
+  gap: 15px;
+}
+
+.configIcon {
+  cursor: pointer;
+  border-radius: 5px;
+  color: #fff;
+  width: 40px;
+  height: auto;
+  padding: 10px;
+  background-color: #006ed6;
+  transition: 0.2s;
+}
+
+.configIcon:hover {
+  background-color: #4092e0;
+}

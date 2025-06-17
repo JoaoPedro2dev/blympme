@@ -1,14 +1,20 @@
 import "./Card.css";
 
-function Card() {
+import { Pen, Trash } from "lucide-react";
+
+function Card({ title, descricao }) {
   return (
-    <div>
-      <div>
-        <h1>Title</h1>
+    <div className="cardBody">
+      <div className="cardTop">
+        <h1>{title}</h1>
       </div>
-      <div>
-        <p>Descrição</p>
+      <div className="cardBottom">
+        <p>{descricao}</p>
       </div>
+      <nav>
+        <Pen className="configIcon" />
+        <Trash className="configIcon" />
+      </nav>
     </div>
   );
 }

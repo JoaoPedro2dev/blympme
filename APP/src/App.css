@@ -10,7 +10,7 @@ section {
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  position: absolute;
+  position: fixed;
   bottom: 40px;
   right: 40px;
   display: flex;
@@ -28,4 +28,18 @@ section {
 
 .addBtn:hover {
   background-color: #80b7eb;
+}
+
+section {
+  padding: 40px 11%;
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}
+
+section > h1 {
+  width: 100%;
+  text-align: left;
+  cursor: default;
+  margin-bottom: -10px;
 }
