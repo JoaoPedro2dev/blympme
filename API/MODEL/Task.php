@@ -1,4 +1,8 @@
 <?php 
+    namespace API\MODEL;
+
+    use API\DAO\TaskDAO;
+
     class Task{
         private ?int $id;
         private int $id_usuario;
@@ -7,27 +11,27 @@
 
         public function cadastrarTask() : Task
         {
-            
+            return new TaskDAO()->insert($this);
         }
 
         public function selecionarTask(int $id) : ?Task
         {
-            
+            return new TaskDAO()->getById($id);
         }
 
         public function listarTasks() : array
         {
-            
+            return new TaskDAO()->selectAll();
         }
 
-        public function alterarTask(int $id)
+        public function alterarTask()
         {
-            
+            return new TaskDAO()->update($this);            
         }
 
         public function deletarTask(int $id) : bool
         {
-            
+            return new TaskDAO()->delete($id);
         }
 
         public function getId() : ?int
