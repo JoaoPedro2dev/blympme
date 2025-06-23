@@ -1,37 +1,37 @@
 <?php 
-    namespace API\MODEL;
+    namespace Model;
 
-    use API\DAO\TaskDAO;
+    use DAO\TaskDAO;
 
     class Task{
         private ?int $id;
-        private int $id_usuario;
+        private ?int $id_usuario;
         private string $titulo;
         private string $descricao;
 
         public function cadastrarTask() : Task
         {
-            return new TaskDAO()->insert($this);
+            return (new TaskDAO())->insert($this);
         }
 
         public function selecionarTask(int $id) : ?Task
         {
-            return new TaskDAO()->getById($id);
+            return (new TaskDAO())->getById($id);
         }
 
         public function listarTasks() : array
         {
-            return new TaskDAO()->selectAll();
+            return (new TaskDAO())->selectAll();
         }
 
         public function alterarTask()
         {
-            return new TaskDAO()->update($this);            
+            return (new TaskDAO())->update($this);            
         }
 
-        public function deletarTask(int $id) : bool
+        public static function deletarTask($id) : bool
         {
-            return new TaskDAO()->delete($id);
+            return (new TaskDAO())->delete($id);
         }
 
         public function getId() : ?int
@@ -44,12 +44,12 @@
             $this->id = $id;
         }
 
-        public function getIdUsuario() : int
+        public function getIdUsuario() : ?int
         {
             return $this->id_usuario;
         }
 
-        public function setIdUsuario(int $id_usuario) : void
+        public function setIdUsuario(?int $id_usuario) : void
         {
             $this->id_usuario = $id_usuario;
         }

@@ -1,8 +1,8 @@
 <?php
-namespace API\DAO;
+namespace DAO;
 
-use API\DAO\DAO;
-use API\MODEL\Task;
+use DAO\DAO;
+use Model\Task;
 
     class TaskDAO extends DAO{
         public function __construct()
@@ -32,7 +32,7 @@ use API\MODEL\Task;
             $stmt->bindValue(1, $id);
             $stmt->execute();
 
-            return $stmt->fetchObject("API\MODEL\Task");
+            return $stmt->fetchObject("Model\Task");
         }
 
         public function selectAll(): array {
@@ -41,17 +41,16 @@ use API\MODEL\Task;
             $stmt = parent::$conexao->prepare($sql);
             $stmt->execute();
 
-            return $stmt->fetchAll(DAO::FETCH_CLASS, "API\MODEL\Task");
+            return $stmt->fetchAll(DAO::FETCH_CLASS, "Model\Task");
         }
 
         public function update(Task $model) : Task{
-             $sql = "UPDATE lembretes SET id_usuario= ?, titulo = ?, descricao = ? WHERE id = ?";
+             $sql = "UPDATE lembretes SET titulo = ?, descricao = ? WHERE id = ?";
 
             $stmt = parent::$conexao->prepare($sql);
-            $stmt->bindValue(1, $model->getIdUsuario());
-            $stmt->bindValue(2, $model->getTitulo());
-            $stmt->bindValue(3, $model->getDescricao());
-            $stmt->bindValue(4, $model->getId());
+            $stmt->bindValue(1, $model->getTitulo());
+            $stmt->bindValue(2, $model->getDescricao());
+            $stmt->bindValue(3, $model->getId());
             $stmt->execute();
 
             $model->setId(parent::$conexao->lastInsertId());

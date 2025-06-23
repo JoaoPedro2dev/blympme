@@ -1,5 +1,5 @@
 <?php 
-    namespace API\DAO;
+    namespace DAO;
 
 use PDO;
 
