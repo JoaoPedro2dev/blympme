@@ -9,6 +9,18 @@
     $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     $base = '/blympme/API';
     $url = str_replace($base, '', $url);
+
+    function varLenght($var, int $max, string $descricao){
+        if(mb_strlen($var) > $max){
+                die(json_encode(['status' => 'erro', 'descricao' => $descricao]));
+        }
+    }
+
+    function typeId($id){
+        if(!filter_var($id, FILTER_VALIDATE_INT)){
+            die(json_encode(['status' => 'erro', 'descricao' => 'digite um id valido']));
+        }
+    }
     
     switch($url){
         case '/':
@@ -22,6 +34,8 @@
             if(!isset($_GET['id']) || empty($_GET['id'])){
                 die(json_encode(['status' => 'erro', 'descricao' => 'voce precisa de um id']));
             }
+
+            typeId($_GET['id']);
 
             $result = TaskController::getTask( (int) $_GET['id']);
 
@@ -40,6 +54,8 @@
                 die(json_encode(['status' => 'erro', 'descricao' => 'voce precisa de um id de usuario']));
             }
 
+            typeId($_GET['id_usuario']);
+
             if(!isset($_GET['titulo']) || empty($_GET['titulo'])){
                 die(json_encode(['status' => 'erro', 'descricao' => 'voce precisa de um titulo']));
             }
@@ -47,6 +63,9 @@
             if(!isset($_GET['descricao']) || empty($_GET['descricao'])){
                 die(json_encode(['status' => 'erro', 'descricao' => 'voce precisa de uma descricao']));
             }
+            
+            varLenght( $_GET['titulo'], 100, 'titulo deve possuir no maximo 100 caracteres');
+            varLenght( $_GET['descricao'], 300, 'descricao deve possuir no maximo 300 caracteres');
 
             $response = TaskController::insertTask($_GET['id_usuario'], $_GET['titulo'], $_GET['descricao']);
 
@@ -65,6 +84,8 @@
                 die(json_encode(['status' => 'erro', 'descricao' => 'voce precisa de um id']));
             }
 
+            typeId($_GET['id']);
+
             if(!isset($_GET['titulo']) || empty($_GET['titulo'])){
                 die(json_encode(['status' => 'erro', 'descricao' => 'voce precisa de um titulo']));
             }
@@ -72,6 +93,9 @@
             if(!isset($_GET['descricao']) || empty($_GET['descricao'])){
                 die(json_encode(['status' => 'erro', 'descricao' => 'voce precisa de uma descricao']));
             }
+
+            varLenght( $_GET['titulo'], 100, 'titulo deve possuir no maximo 100 caracteres');
+            varLenght( $_GET['descricao'], 300, 'descricao deve possuir no maximo 300 caracteres');
 
             $response = TaskController::updateTask($_GET['id'], $_GET['titulo'], $_GET['descricao']);
             
@@ -89,6 +113,8 @@
             if(!isset($_GET['id']) || empty($_GET['id'])){
                 die(json_encode(['status' => 'erro', 'descricao' => 'voce precisa de um id']));
             }
+
+            typeId($_GET['id']);
 
             $response = TaskController::deleteTask($_GET['id']);
 
