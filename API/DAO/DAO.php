@@ -1,7 +1,7 @@
 <?php 
     namespace DAO;
 
-use PDO;
+    use PDO;
 
     abstract class DAO extends PDO{
         protected static $conexao = null;

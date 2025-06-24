@@ -3,7 +3,7 @@
 
     use DAO\TaskDAO;
 
-    class Task{
+    class Task implements \JsonSerializable{
         private ?int $id;
         private ?int $id_usuario;
         private string $titulo;
@@ -29,7 +29,7 @@
             return (new TaskDAO())->update($this);            
         }
 
-        public static function deletarTask($id) : bool
+        public static function deletarTask(int $id) : bool
         {
             return (new TaskDAO())->delete($id);
         }
@@ -72,6 +72,15 @@
         public function setDescricao(string $descricao) : void
         {
             $this->descricao = $descricao;
+        }
+
+        public function jsonSerialize(): array
+        {
+            return [
+                'id' => $this->id,
+                'titulo' => $this->titulo,
+                'descricao' => $this->descricao,
+            ];
         }
     }
 ?>
