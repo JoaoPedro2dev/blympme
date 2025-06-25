@@ -1,6 +1,7 @@
 <?php
     require_once"./autoload.php";
     require_once"./config/conexao.php";
+    include_once"./HELP/functions.php";
 
     use Controller\TaskController;
 
@@ -10,17 +11,7 @@
     $base = '/blympme/API';
     $url = str_replace($base, '', $url);
 
-    function varLenght($var, int $max, string $descricao){
-        if(mb_strlen($var) > $max){
-                die(json_encode(['status' => 'erro', 'descricao' => $descricao]));
-        }
-    }
-
-    function typeId($id){
-        if(!filter_var($id, FILTER_VALIDATE_INT)){
-            die(json_encode(['status' => 'erro', 'descricao' => 'digite um id valido']));
-        }
-    }
+    verifyKey();
     
     switch($url){
         case '/':
