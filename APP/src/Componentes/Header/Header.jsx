@@ -15,7 +15,12 @@ function Header() {
         Header
       </h1>
 
-      <CircleUser className="accountIcon" />
+      <CircleUser
+        className="accountIcon"
+        onClick={() => {
+          navigate("/login");
+        }}
+      />
     </header>
   );
 }

@@ -6,11 +6,17 @@ import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router";
 
 import TaskForm from "./Pages/TaskForm/TaskForm.jsx";
+import Login from "./Pages/Login/Login.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
+    errorElement: <p>Error page Login</p>,
   },
   {
     path: "/adicionar",

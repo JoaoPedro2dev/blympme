@@ -74,6 +74,7 @@ function App() {
   return (
     <div>
       <Header />
+
       <section>
         <h1>Meus lembretes</h1>
         {array.length < 1 ? (
@@ -87,6 +88,7 @@ function App() {
           ))
         )}
       </section>
+
       <button
         className="addBtn"
         onClick={() => {

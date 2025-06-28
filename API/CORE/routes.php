@@ -24,7 +24,7 @@
             if( $result ){
                 echo json_encode($result, JSON_UNESCAPED_UNICODE);
             }else{
-                echo json_encode(['status' => 'erro', 'descricao' => 'task nao encontrada'], JSON_UNESCAPED_UNICODE);
+                echo json_encode(['status' => 'erro', 'descricao' => 'Task não encontrada'], JSON_UNESCAPED_UNICODE);
             }    
         break;
             
