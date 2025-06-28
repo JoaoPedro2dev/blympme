@@ -50,7 +50,11 @@
 
             Functions::typeId($_GET['id_usuario']);
 
-            $response = TaskController::insertTask($_GET['id_usuario'], $_GET['titulo'], $_GET['descricao'], $_GET['tipo'], $_GET['delay'], $_GET['horario'], $_GET['inicio']);
+            $funcParams = array_map(function($campo){
+                return ($_GET[$campo['var']]);
+            }, $array);
+            
+            $response = TaskController::insertTask(...$funcParams);
 
             if($response){
                 echo json_encode(['status' => 'sucesso', 'descricao' => 'cadastrado']);
@@ -80,7 +84,11 @@
 
             Functions::typeId($_GET['id']);
 
-            $response = TaskController::updateTask($_GET['id'], $_GET['titulo'], $_GET['descricao'], $_GET['tipo'], $_GET['delay'], $_GET['horario'], $_GET['inicio']);
+            $funcParams = array_map(function($campo){
+                return ($_GET[$campo['var']]);
+            }, $array);
+
+            $response = TaskController::updateTask(...$funcParams);
             
             if($response){
                 echo json_encode(['status' => 'sucesso', 'descricao' => 'Alterações salvas com sucesso']);
