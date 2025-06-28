@@ -47,7 +47,7 @@ use DateTime;
         public function setId(?int $id) : void
         {
             if(!filter_var($id, FILTER_VALIDATE_INT)){
-                die(json_encode(['status' => 'erro', 'descricao' => 'digite um id valido']));
+                die(json_encode(['status' => 'erro', 'descricao' => 'digite um id valido'], JSON_UNESCAPED_UNICODE));
             }
             
             $this->id = $id;
@@ -77,7 +77,7 @@ use DateTime;
         public function setIdUsuario(?int $id_usuario) : void
         {
             if(!filter_var($id_usuario, FILTER_VALIDATE_INT)){
-                die(json_encode(['status' => 'erro', 'descricao' => 'digite um id de usuario valido']));
+                die(json_encode(['status' => 'erro', 'descricao' => 'digite um id de usuario valido'], JSON_UNESCAPED_UNICODE));
             }
             
             $this->id_usuario = $id_usuario;
@@ -91,7 +91,7 @@ use DateTime;
         public function setTitulo(string $titulo) : void
         {
             if(mb_strlen($titulo) > 100){
-                    die(json_encode(['status' => 'erro', 'descricao' => 'Um título pode ter no máximo 100 letras incluindo espaços']));
+                    die(json_encode(['status' => 'erro', 'descricao' => 'Um título pode ter no máximo 100 letras incluindo espaços'], JSON_UNESCAPED_UNICODE));
             }
             
             $this->titulo = $titulo;
@@ -105,7 +105,7 @@ use DateTime;
         public function setDescricao(string $descricao) : void
         {
             if(mb_strlen($descricao) > 300){
-                    die(json_encode(['status' => 'erro', 'descricao' => 'Uma descrição pode ter no máximo 300 letras incluindo espaços']));
+                    die(json_encode(['status' => 'erro', 'descricao' => 'Uma descrição pode ter no máximo 300 letras incluindo espaços'], JSON_UNESCAPED_UNICODE));
             }
             
             $this->descricao = $descricao;
@@ -116,7 +116,7 @@ use DateTime;
                 die(json_encode([
                     'status' => 'erro',
                     'descricao' => 'tipo de lembrete nao conhecido'
-                ]));
+                ], JSON_UNESCAPED_UNICODE));
             }
 
             $this->tipo = $tipo;
@@ -127,7 +127,7 @@ use DateTime;
                  die(json_encode([
                     'status' => 'erro',
                     'descricao' => 'Um lembrete pode esperar no maximo 7 dias'
-                ]));
+                ], JSON_UNESCAPED_UNICODE));
             }
             $this->delay = $delay;
         }
@@ -143,7 +143,7 @@ use DateTime;
             die(json_encode([
                 'status' => 'erro',
                 'descricao' => 'horario invalido. formato esperado H-i-s'
-            ]));
+            ], JSON_UNESCAPED_UNICODE));
         }
 
         public function setInicio(string $inicio): void{
@@ -156,7 +156,7 @@ use DateTime;
                 die(json_encode([
                     'status' => 'erro',
                     'descricao' => 'data de inicio invalida. formato esperado Y-m-d'
-                ]));
+                ], JSON_UNESCAPED_UNICODE));
             }
 
             $dataAtual = new DateTime();
@@ -166,7 +166,7 @@ use DateTime;
                 die(json_encode([
                     'status' => 'erro',
                     'descricao' => 'A data de inicio Não pode ser antes da data atual'
-                ]));
+                ], JSON_UNESCAPED_UNICODE));
             }
 
             $this->inicio = $inicio;

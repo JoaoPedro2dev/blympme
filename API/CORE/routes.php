@@ -15,9 +15,7 @@
         case '/get':
             echo "GET \n";
 
-            if(!isset($_GET['id']) || empty($_GET['id'])){
-                die(json_encode(['status' => 'erro', 'descricao' => 'voce precisa de um id']));
-            }
+            Functions::verificarVariaveis('id', 'Você precisa de um id');
 
             Functions::typeId($_GET['id']);
 
@@ -26,7 +24,7 @@
             if( $result ){
                 echo json_encode($result, JSON_UNESCAPED_UNICODE);
             }else{
-                echo json_encode(['status' => 'erro', 'descricao' => 'task nao encontrada']);
+                echo json_encode(['status' => 'erro', 'descricao' => 'task nao encontrada'], JSON_UNESCAPED_UNICODE);
             }    
         break;
             
@@ -57,9 +55,9 @@
             $response = TaskController::insertTask(...$funcParams);
 
             if($response){
-                echo json_encode(['status' => 'sucesso', 'descricao' => 'cadastrado']);
+                echo json_encode(['status' => 'sucesso', 'descricao' => 'cadastrado'], JSON_UNESCAPED_UNICODE);
             }else{
-                die(json_encode(['status' => 'erro', 'descricao' => 'erro ao cadastrar']));
+                die(json_encode(['status' => 'erro', 'descricao' => 'erro ao cadastrar'], JSON_UNESCAPED_UNICODE));
             }
             
         break;
@@ -91,27 +89,25 @@
             $response = TaskController::updateTask(...$funcParams);
             
             if($response){
-                echo json_encode(['status' => 'sucesso', 'descricao' => 'Alterações salvas com sucesso']);
+                echo json_encode(['status' => 'sucesso', 'descricao' => 'Alterações salvas com sucesso'], JSON_UNESCAPED_UNICODE);
             }else{
-                echo json_encode(['status' => 'erro', 'descricao' => 'Alterações não salvas, id não encontrado']);
+                echo json_encode(['status' => 'erro', 'descricao' => 'Alterações não salvas, id não encontrado'], JSON_UNESCAPED_UNICODE);
             }
         break;
             
         case '/delete':
             echo "DELETE \n";
 
-            if(!isset($_GET['id']) || empty($_GET['id'])){
-                die(json_encode(['status' => 'erro', 'descricao' => 'voce precisa de um id']));
-            }
+            Functions::verificarVariaveis('id', 'Você precisa de um id');
 
             Functions::typeId($_GET['id']);
 
             $response = TaskController::deleteTask($_GET['id']);
 
             if($response){
-                echo json_encode(['status' => 'sucesso', 'descricao' => 'task excluida']);    
+                echo json_encode(['status' => 'sucesso', 'descricao' => 'task excluida'], JSON_UNESCAPED_UNICODE);    
             }else{
-                echo json_encode(['status' => 'erro', 'descricao' => 'nao foi possivel excluir a task, id nao encontrado']);    
+                echo json_encode(['status' => 'erro', 'descricao' => 'nao foi possivel excluir a task, id nao encontrado'], JSON_UNESCAPED_UNICODE);    
             }
         break;
             
