@@ -12,12 +12,17 @@ use Model\Task;
 
         public function insert(Task $model) : Task
         { 
-            $sql = "INSERT INTO lembretes (id_usuario, titulo, descricao) VALUES (?, ?, ?)";
+            $sql = "INSERT INTO lembretes (id_usuario, titulo, descricao, tipo, delay, horario, inicio) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
             $stmt = parent::$conexao->prepare($sql);
             $stmt->bindValue(1, $model->getIdUsuario());
             $stmt->bindValue(2, $model->getTitulo());
             $stmt->bindValue(3, $model->getDescricao());
+            $stmt->bindValue(4, $model->getTipo());
+            $stmt->bindValue(5, $model->getDelay());
+            $stmt->bindValue(6, $model->getHorario());
+            $stmt->bindValue(7, $model->getInicio());
+
             $stmt->execute();
             $model->setId(parent::$conexao->lastInsertId());
             
@@ -54,11 +59,15 @@ use Model\Task;
                 return false;
             }
             
-            $sql = "UPDATE lembretes SET titulo = ?, descricao = ? WHERE id = ?";
+            $sql = "UPDATE lembretes SET titulo = ?, descricao = ?, tipo = ?, delay = ?, horario = ?, inicio = ? WHERE id = ?";
             $stmt = parent::$conexao->prepare($sql);
             $stmt->bindValue(1, $model->getTitulo());
             $stmt->bindValue(2, $model->getDescricao());
-            $stmt->bindValue(3, $model->getId());
+            $stmt->bindValue(3, $model->getTipo());
+            $stmt->bindValue(4, $model->getDelay());
+            $stmt->bindValue(5, $model->getHorario());
+            $stmt->bindValue(6, $model->getInicio());
+            $stmt->bindValue(7, $model->getId());
             $stmt->execute();       
             
             return true;

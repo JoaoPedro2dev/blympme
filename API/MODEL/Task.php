@@ -8,6 +8,10 @@
         private ?int $id_usuario;
         private string $titulo;
         private string $descricao;
+        private string $tipo;
+        private int $delay;
+        private string $horario;
+        private string $inicio;
 
         public function cadastrarTask() : Task
         {
@@ -49,6 +53,22 @@
             return $this->id_usuario;
         }
 
+        public function getTipo(): string{
+            return $this->tipo;
+        }
+
+        public function getDelay(): int{
+            return $this->delay;
+        }
+
+        public function getHorario(): string{
+            return $this->horario;
+        }
+
+        public function getInicio(): string{
+            return $this->inicio;
+        }
+
         public function setIdUsuario(?int $id_usuario) : void
         {
             $this->id_usuario = $id_usuario;
@@ -72,6 +92,26 @@
         public function setDescricao(string $descricao) : void
         {
             $this->descricao = $descricao;
+        }
+
+        public function setTipo(string $tipo): void{
+            if($tipo !== 'único' && $tipo !== 'Recorrente'){
+                die(json_encode(['status' => 'erro', 'descricao' => 'tipo de lembrete não conhecido']));
+            }
+
+            $this->tipo = $tipo;
+        }
+
+        public function setDelay(int $delay): void{
+            $this->delay = $delay;
+        }
+
+        public function setHorario(string $horario): void{
+            $this->horario = $horario;
+        }
+
+        public function setInicio(string $inicio): void{
+            $this->inicio = $inicio;
         }
 
         public function jsonSerialize(): array

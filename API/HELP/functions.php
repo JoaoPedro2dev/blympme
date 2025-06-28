@@ -1,7 +1,7 @@
 <?php 
     namespace Help;
 
-    abstract class functions{
+    abstract class Functions{
         public static function verifyKey(){
             if(!isset($_GET['key']) || empty($_GET['key'])){
                 die(json_encode(['status' => 'error', 'descricao' => 'voce precisa de uma chave de acesso']));

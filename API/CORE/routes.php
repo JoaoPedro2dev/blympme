@@ -2,11 +2,11 @@
     header("Content-Type: application/json; cahrset=utf-8");
 
     use Controller\TaskController;
-    use Help\functions;
+    use Help\Functions;
 
-    functions::verifyKey();
+    Functions::verifyKey();
     
-    switch(functions::formatUrl()){
+    switch(Functions::formatUrl()){
         case '/':
             echo "INDEX \n";
             echo json_encode(TaskController::index(), JSON_UNESCAPED_UNICODE);
@@ -19,7 +19,7 @@
                 die(json_encode(['status' => 'erro', 'descricao' => 'voce precisa de um id']));
             }
 
-            functions::typeId($_GET['id']);
+            Functions::typeId($_GET['id']);
 
             $result = TaskController::getTask( (int) $_GET['id']);
 
@@ -37,7 +37,7 @@
                 die(json_encode(['status' => 'erro', 'descricao' => 'voce precisa de um id de usuario']));
             }
 
-            functions::typeId($_GET['id_usuario']);
+            Functions::typeId($_GET['id_usuario']);
 
             if(!isset($_GET['titulo']) || empty($_GET['titulo'])){
                 die(json_encode(['status' => 'erro', 'descricao' => 'voce precisa de um titulo']));
@@ -47,10 +47,10 @@
                 die(json_encode(['status' => 'erro', 'descricao' => 'voce precisa de uma descricao']));
             }
             
-            functions::varLenght( $_GET['titulo'], 100, 'titulo deve possuir no maximo 100 caracteres');
-            functions::varLenght( $_GET['descricao'], 300, 'descricao deve possuir no maximo 300 caracteres');
+            Functions::varLenght( $_GET['titulo'], 100, 'titulo deve possuir no maximo 100 caracteres');
+            Functions::varLenght( $_GET['descricao'], 300, 'descricao deve possuir no maximo 300 caracteres');
 
-            $response = TaskController::insertTask($_GET['id_usuario'], $_GET['titulo'], $_GET['descricao']);
+            $response = TaskController::insertTask($_GET['id_usuario'], $_GET['titulo'], $_GET['descricao'], $_GET['tipo'], $_GET['delay'], $_GET['horario'], $_GET['inicio']);
 
             if($response){
                 echo json_encode(['status' => 'sucesso', 'descricao' => 'cadastrado']);
@@ -66,7 +66,7 @@
                 die(json_encode(['status' => 'erro', 'descricao' => 'voce precisa de um id']));
             }
 
-            functions::typeId($_GET['id']);
+            Functions::typeId($_GET['id']);
 
             if(!isset($_GET['titulo']) || empty($_GET['titulo'])){
                 die(json_encode(['status' => 'erro', 'descricao' => 'voce precisa de um titulo']));
@@ -76,10 +76,10 @@
                 die(json_encode(['status' => 'erro', 'descricao' => 'voce precisa de uma descricao']));
             }
 
-            functions::varLenght( $_GET['titulo'], 100, 'titulo deve possuir no maximo 100 caracteres');
-            functions::varLenght( $_GET['descricao'], 300, 'descricao deve possuir no maximo 300 caracteres');
+            Functions::varLenght( $_GET['titulo'], 100, 'titulo deve possuir no maximo 100 caracteres');
+            Functions::varLenght( $_GET['descricao'], 300, 'descricao deve possuir no maximo 300 caracteres');
 
-            $response = TaskController::updateTask($_GET['id'], $_GET['titulo'], $_GET['descricao']);
+            $response = TaskController::updateTask($_GET['id'], $_GET['titulo'], $_GET['descricao'], $_GET['tipo'], $_GET['delay'], $_GET['horario'], $_GET['inicio']);
             
             if($response){
                 echo json_encode(['status' => 'sucesso', 'descricao' => 'alteracoes salvas com sucesso']);
@@ -95,7 +95,7 @@
                 die(json_encode(['status' => 'erro', 'descricao' => 'voce precisa de um id']));
             }
 
-            functions::typeId($_GET['id']);
+            Functions::typeId($_GET['id']);
 
             $response = TaskController::deleteTask($_GET['id']);
 
