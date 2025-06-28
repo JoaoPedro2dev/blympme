@@ -30,5 +30,11 @@
             
             return $url = str_replace($base, '', $url);
         }
+
+        public static function verificarVariaveis($var, $erro){
+            if(!isset($_GET[$var]) || empty($_GET[$var])){
+                die(json_encode(['status' => 'erro', 'descricao' => $erro]));
+            }
+        }
     }  
 ?>

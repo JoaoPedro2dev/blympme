@@ -33,22 +33,22 @@
         case '/post':
             echo "INSERT \n";
             
-            if(!isset($_GET['id_usuario']) || empty($_GET['id_usuario'])){
-                die(json_encode(['status' => 'erro', 'descricao' => 'voce precisa de um id de usuario']));
+            $array = [
+                ['var' => 'id_usuario', 'descricao' => 'id usuario'],
+                ['var' => 'titulo', 'descricao' => 'titulo'],
+                ['var' => 'descricao', 'descricao' => 'descricao'],
+                ['var' => 'tipo', 'descricao' => 'tipo'],
+                ['var' => 'delay', 'descricao' => 'delay'],
+                ['var' => 'horario', 'descricao' => 'horario'],
+                ['var' => 'inicio', 'descricao' => 'inicio'],
+
+            ];
+
+            foreach($array as $var){
+                Functions::verificarVariaveis($var['var'], $var['descricao']);
             }
 
             Functions::typeId($_GET['id_usuario']);
-
-            if(!isset($_GET['titulo']) || empty($_GET['titulo'])){
-                die(json_encode(['status' => 'erro', 'descricao' => 'voce precisa de um titulo']));
-            }
-
-            if(!isset($_GET['descricao']) || empty($_GET['descricao'])){
-                die(json_encode(['status' => 'erro', 'descricao' => 'voce precisa de uma descricao']));
-            }
-            
-            Functions::varLenght( $_GET['titulo'], 100, 'titulo deve possuir no maximo 100 caracteres');
-            Functions::varLenght( $_GET['descricao'], 300, 'descricao deve possuir no maximo 300 caracteres');
 
             $response = TaskController::insertTask($_GET['id_usuario'], $_GET['titulo'], $_GET['descricao'], $_GET['tipo'], $_GET['delay'], $_GET['horario'], $_GET['inicio']);
 
@@ -57,34 +57,35 @@
             }else{
                 die(json_encode(['status' => 'erro', 'descricao' => 'erro ao cadastrar']));
             }
+            
         break;
             
         case '/put':
             echo "UPDATE \n";
 
-            if(!isset($_GET['id']) || empty($_GET['id'])){
-                die(json_encode(['status' => 'erro', 'descricao' => 'voce precisa de um id']));
+            $array = [
+                ['var' => 'id', 'descricao' => 'id'],
+                ['var' => 'titulo', 'descricao' => 'titulo'],
+                ['var' => 'descricao', 'descricao' => 'descricao'],
+                ['var' => 'tipo', 'descricao' => 'tipo'],
+                ['var' => 'delay', 'descricao' => 'delay'],
+                ['var' => 'horario', 'descricao' => 'horario'],
+                ['var' => 'inicio', 'descricao' => 'inicio'],
+
+            ];
+
+            foreach($array as $var){
+                Functions::verificarVariaveis($var['var'], $var['descricao']);
             }
 
             Functions::typeId($_GET['id']);
 
-            if(!isset($_GET['titulo']) || empty($_GET['titulo'])){
-                die(json_encode(['status' => 'erro', 'descricao' => 'voce precisa de um titulo']));
-            }
-
-            if(!isset($_GET['descricao']) || empty($_GET['descricao'])){
-                die(json_encode(['status' => 'erro', 'descricao' => 'voce precisa de uma descricao']));
-            }
-
-            Functions::varLenght( $_GET['titulo'], 100, 'titulo deve possuir no maximo 100 caracteres');
-            Functions::varLenght( $_GET['descricao'], 300, 'descricao deve possuir no maximo 300 caracteres');
-
             $response = TaskController::updateTask($_GET['id'], $_GET['titulo'], $_GET['descricao'], $_GET['tipo'], $_GET['delay'], $_GET['horario'], $_GET['inicio']);
             
             if($response){
-                echo json_encode(['status' => 'sucesso', 'descricao' => 'alteracoes salvas com sucesso']);
+                echo json_encode(['status' => 'sucesso', 'descricao' => 'Alterações salvas com sucesso']);
             }else{
-                echo json_encode(['status' => 'erro', 'descricao' => 'alteracoes nao salvas, id nao encontrado']);
+                echo json_encode(['status' => 'erro', 'descricao' => 'Alterações não salvas, id não encontrado']);
             }
         break;
             
