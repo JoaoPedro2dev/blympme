@@ -147,17 +147,29 @@ use DateTime;
         }
 
         public function setInicio(string $inicio): void{
-            $d = DateTime::createFromFormat('Y-m-d', $inicio);
+            date_default_timezone_set('America/Sao_paulo');
 
-            if($d && $d->format('Y-m-d') === $inicio){
-              $this->inicio = $inicio;
-              return;
+
+            $dataInicial = DateTime::createFromFormat('Y-m-d', $inicio);
+
+            if(!$dataInicial || $dataInicial->format('Y-m-d') != $inicio){
+                die(json_encode([
+                    'status' => 'erro',
+                    'descricao' => 'data de inicio invalida. formato esperado Y-m-d'
+                ]));
             }
 
-            die(json_encode([
-                'status' => 'erro',
-                'descricao' => 'data de inicio invalida. formato esperado Y-m-d'
-            ]));
+            $dataAtual = new DateTime();
+            $dataAtual->setTime(0, 0, 0);
+
+            if($dataInicial < $dataAtual){
+                die(json_encode([
+                    'status' => 'erro',
+                    'descricao' => 'A data de inicio Não pode ser antes da data atual'
+                ]));
+            }
+
+            $this->inicio = $inicio;
         }
 
         public function jsonSerialize(): array
