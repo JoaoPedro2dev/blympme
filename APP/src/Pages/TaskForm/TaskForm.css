@@ -1,3 +1,10 @@
+.formContainer {
+  padding: 2% 0px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
 form {
   border: 1px solid #ccc;
   border-radius: 10px;
@@ -37,11 +44,4 @@ form > input[type="submit"] {
 
 form > h2 {
   text-align: center;
-}
-
-.formContainer {
-  padding: 2% 0px;
-  display: flex;
-  justify-content: center;
-  width: 100%;
 }

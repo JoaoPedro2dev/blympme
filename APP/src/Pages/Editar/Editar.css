@@ -1,0 +1,9 @@
+.editarContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4%;
+}
+.editarContainer > form {
+  background-color: #fff;
+}

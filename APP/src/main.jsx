@@ -9,6 +9,7 @@ import TaskForm from "./Pages/TaskForm/TaskForm.jsx";
 import Login from "./Pages/Login/Login.jsx";
 import Cadastro from "./Pages/Cadastro/Cadastro.jsx";
 import Agreement from "./Pages/Agreement/Agreement.jsx";
+import Editar from "./Pages/Editar/Editar.jsx";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,11 @@ const router = createBrowserRouter([
     path: "/adicionar",
     element: <TaskForm />,
     errorElement: <p>Error page adicionar</p>,
+  },
+  {
+    path: "/editar_lembrete",
+    element: <Editar />,
+    errorElement: <p>Error page editar</p>,
   },
   {
     path: "/termos",
