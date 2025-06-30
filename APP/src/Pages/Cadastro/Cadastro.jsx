@@ -63,7 +63,7 @@ function Cadastro() {
         <p className="agreementBox">
           <input type="checkbox" name="agreement" id="agreement" />
           <label htmlFor="agreement">
-            Li e aceito os <a href="#">Termos e condições</a>
+            Li e aceito os <a href="/termos">Termos e condições</a>
           </label>
           <span className="errorMsgm">erro</span>
         </p>

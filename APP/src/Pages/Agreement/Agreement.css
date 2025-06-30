@@ -1,0 +1,64 @@
+/* .AgreementBody {
+  padding: 11%;
+} */
+
+section {
+  max-width: 100vw;
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 40px 40px;
+
+  background-color: #f2f2f2;
+  cursor: default;
+}
+
+section > article {
+  width: 800px;
+  border: 1px solid #ccc;
+
+  background-color: #fff;
+
+  padding: 40px;
+  border-radius: 15px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+section > article > h1 {
+  font-size: xx-large;
+}
+
+section > article > h2 {
+  font-size: large;
+  margin-top: 20px;
+}
+
+p {
+  display: flex;
+  flex-direction: column;
+}
+
+p > span > strong {
+  font-size: 14px;
+}
+
+ul {
+  margin-left: 15px;
+  max-width: 95%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+article > a {
+  text-align: left;
+  font-size: large;
+  margin-top: 10px;
+}
