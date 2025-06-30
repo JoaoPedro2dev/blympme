@@ -1,9 +1,10 @@
 import { useState } from "react";
-import "./Login.css";
-import { Eye, EyeOff } from "lucide-react";
 import { useNavigate } from "react-router";
+import "./Cadastro.css";
 
-function Login() {
+import { Eye, EyeOff } from "lucide-react";
+
+function Cadastro() {
   const [passVisible, setPassVisible] = useState(false);
   const [typeInput, setTypeInput] = useState("password");
 
@@ -29,18 +30,29 @@ function Login() {
         Header
       </h1>
       <form action="">
-        <h2>Login</h2>
+        <h2>Criar conta</h2>
 
         <p>
           <label htmlFor="user">Usuário</label>
-          <input type="text" id="user" name="user" />
+          <input
+            type="text"
+            id="user"
+            name="user"
+            placeholder="Digite o seu nome de usuário"
+          />
           <span className="errorMsgm">erro</span>
         </p>
 
         <p>
           <label htmlFor="pass">Senha</label>
           <div className="inputWrapper">
-            <input type={typeInput} id="pass" name="pass" maxLength={10} />
+            <input
+              type={typeInput}
+              id="pass"
+              name="pass"
+              maxLength={10}
+              placeholder="Digite sua senha"
+            />
             <span id="eyeBox" onClick={changePass}>
               {passVisible ? <Eye color="#ccc" /> : <EyeOff color="#ccc" />}
             </span>
@@ -48,13 +60,21 @@ function Login() {
           <span className="errorMsgm">erro</span>
         </p>
 
+        <p className="agreementBox">
+          <input type="checkbox" name="agreement" id="agreement" />
+          <label htmlFor="agreement">
+            Li e aceito os <a href="#">Termos e condições</a>
+          </label>
+          <span className="errorMsgm">erro</span>
+        </p>
+
         <p>
-          <input type="submit" value="ENTRAR" />
-          <a href="/cadastro">Ainda não possui uma conta? Criar uma</a>
+          <input type="submit" value="CADASTRAR" />
+          <a href="/login">Já possui uma conta?</a>
         </p>
       </form>
     </div>
   );
 }
 
-export default Login;
+export default Cadastro;

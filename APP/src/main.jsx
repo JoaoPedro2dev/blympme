@@ -7,6 +7,7 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 
 import TaskForm from "./Pages/TaskForm/TaskForm.jsx";
 import Login from "./Pages/Login/Login.jsx";
+import Cadastro from "./Pages/Cadastro/Cadastro.jsx";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,11 @@ const router = createBrowserRouter([
     path: "/login",
     element: <Login />,
     errorElement: <p>Error page Login</p>,
+  },
+  {
+    path: "/cadastro",
+    element: <Cadastro />,
+    errorElement: <p>Error page cadastro</p>,
   },
   {
     path: "/adicionar",
